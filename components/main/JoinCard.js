@@ -29,15 +29,16 @@ export default function JoinCard({ id, group_name, group_size, group_date }) {
           <Box p={6}>
             <Stack spacing={0} align={"center"} mb={5}>
               <Heading fontSize={"2xl"} fontWeight={500} fontFamily={"body"}>
-                Group Name
+                {group_name}
               </Heading>
-              <Text color={"gray.500"}>Location</Text>
+              <Text color={"gray.500"}>Revision Group {id} </Text>
             </Stack>
 
             <Stack direction={"row"} justify={"center"} spacing={6}>
               <Stack spacing={0} align={"center"}>
+                <Text fontWeight={"600"}>{group_size} Students</Text>
                 <Text fontSize={"sm"} color={"gray.500"}>
-                  Date & Time
+                  Room {id} 02/05/23
                 </Text>
               </Stack>
             </Stack>
