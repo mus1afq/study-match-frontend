@@ -13,7 +13,7 @@ import {
   Container,
 } from "@chakra-ui/react";
 
-export default function JoinCard() {
+export default function JoinCard({ id, group_name, group_size, group_date }) {
   return (
     <Container>
       <Center py={6}>
