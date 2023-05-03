@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { setCookie } from "cookies-next";
 
 import axiosInstance from "@/lib/axios";
 
@@ -34,6 +35,8 @@ export default function LoginCard() {
     const response = await axiosInstance.post("/api/token/", values);
 
     if (response.status === 200) {
+      setCookie("access_token", response.data.access);
+      setCookie("refresh_token", response.data.refresh);
       router.push("/Main");
     } else if (response.status === 401) {
       console.log(response.data);
