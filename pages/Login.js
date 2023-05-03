@@ -12,8 +12,36 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { useState } from "react";
+import { useRouter } from "next/router";
+
+import axiosInstance from "@/lib/axios";
 
 export default function LoginCard() {
+  const router = useRouter();
+  const [values, setValues] = useState();
+
+  const handleChange = (event) => {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const response = await axiosInstance.post("/api/token/", values);
+
+    if (response.status === 200) {
+      router.push("/Main");
+    } else if (response.status === 401) {
+      console.log(response.data);
+    } else {
+      console.log(response);
+    }
+  };
+
   return (
     <Flex
       minH={"100vh"}
@@ -35,13 +63,13 @@ export default function LoginCard() {
           p={8}
         >
           <Stack spacing={4}>
-            <FormControl id="email">
-              <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+            <FormControl id="username">
+              <FormLabel>Username</FormLabel>
+              <Input type="text" name="username" onChange={handleChange} />
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input type="password" name="password" onChange={handleChange} />
             </FormControl>
             <Stack spacing={10}>
               <Stack
@@ -60,6 +88,7 @@ export default function LoginCard() {
                 _hover={{
                   bg: "green.500",
                 }}
+                onClick={handleSubmit}
               >
                 Sign in
               </Button>
