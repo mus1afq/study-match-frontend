@@ -17,8 +17,12 @@ export default function Groupcontent({
   group_name,
   group_size,
   group_location,
+  group_date,
   id,
 }) {
+  const date = new Date(group_date);
+  const formattedDate = date.toLocaleString();
+
   return (
     <Container>
       <Center py={6}>
@@ -42,7 +46,7 @@ export default function Groupcontent({
               <Stack spacing={0} align={"center"}>
                 <Text fontWeight={"600"}>{group_location}</Text>
                 <Text fontSize={"sm"} color={"gray.500"}>
-                  Date & Time
+                  {formattedDate}
                 </Text>
               </Stack>
             </Stack>

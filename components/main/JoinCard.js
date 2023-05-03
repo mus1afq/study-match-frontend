@@ -15,6 +15,9 @@ import authFetch from "@/lib/axios/interceptors";
 export default function JoinCard({ id, group_name, group_size, group_date }) {
   const router = useRouter();
 
+  const date = new Date(group_date);
+  const formattedDate = date.toLocaleString();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -49,9 +52,20 @@ export default function JoinCard({ id, group_name, group_size, group_date }) {
 
             <Stack direction={"row"} justify={"center"} spacing={6}>
               <Stack spacing={0} align={"center"}>
-                <Text fontWeight={"600"}>{group_size} Students</Text>
-                <Text fontSize={"sm"} color={"gray.500"}>
-                  Room {id} 02/05/23
+                <Text fontWeight={"600"}>{group_size} Student(s)</Text>
+                <Text
+                  fontSize={"sm"}
+                  justifyContent={"center"}
+                  color={"gray.500"}
+                >
+                  Room {id}
+                </Text>
+                <Text
+                  fontSize={"sm"}
+                  justifyContent={"center"}
+                  color={"gray.500"}
+                >
+                  {formattedDate}
                 </Text>
               </Stack>
             </Stack>

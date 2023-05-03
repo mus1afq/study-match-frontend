@@ -38,6 +38,7 @@ export default function Groups() {
               id={group.id}
               group_name={group.name}
               group_location={group.location}
+              group_date={group.group_date}
               group_size={group.group_size}
             />
           ))}

@@ -14,6 +14,7 @@ import {
 import { AddIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { format } from "date-fns";
 
 import authFetch from "@/lib/axios/interceptors";
 
@@ -22,6 +23,7 @@ export default function CreateCard() {
   const [values, setValues] = useState({
     group_name: "",
     group_location: "",
+    group_date: "",
   });
 
   const handleChange = (event) => {
@@ -33,6 +35,8 @@ export default function CreateCard() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    console.log(values);
 
     const response = await authFetch.post("/create/group/", values);
 
@@ -83,6 +87,14 @@ export default function CreateCard() {
             type="datetime-local"
             variant="filled"
             placeholder="Date and Time"
+            onChange={(e) => {
+              const date = new Date(e.target.value);
+              const formattedDate = format(date, "yyyy-MM-dd'T'HH:mm:ss'Z'");
+              setValues({
+                ...values,
+                group_date: formattedDate,
+              });
+            }}
           />
         </CardBody>
         <CardFooter>

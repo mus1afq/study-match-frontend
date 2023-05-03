@@ -33,6 +33,7 @@ export default function Main() {
               id={group.id}
               group_name={group.name}
               group_size={group.group_size}
+              group_date={group.group_date}
             />
           ))}
         </Flex>
