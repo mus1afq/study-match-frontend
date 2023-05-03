@@ -34,24 +34,6 @@ export default function MainPanel() {
             StudyMatch connects students who are looking for other students to
             study with.
           </Text>
-          <Stack direction={"row"}>
-            <Button
-              bg={"blue.400"}
-              rounded={"full"}
-              color={"white"}
-              _hover={{ bg: "blue.500" }}
-            >
-              How it Works
-            </Button>
-            <Button
-              bg={"whiteAlpha.300"}
-              rounded={"full"}
-              color={"white"}
-              _hover={{ bg: "whiteAlpha.500" }}
-            >
-              About us
-            </Button>
-          </Stack>
         </Stack>
       </VStack>
     </Flex>
