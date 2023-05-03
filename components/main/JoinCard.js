@@ -29,16 +29,15 @@ export default function JoinCard() {
           <Box p={6}>
             <Stack spacing={0} align={"center"} mb={5}>
               <Heading fontSize={"2xl"} fontWeight={500} fontFamily={"body"}>
-                MATH 051
+                Group Name
               </Heading>
-              <Text color={"gray.500"}>Revision Group 1 </Text>
+              <Text color={"gray.500"}>Location</Text>
             </Stack>
 
             <Stack direction={"row"} justify={"center"} spacing={6}>
               <Stack spacing={0} align={"center"}>
-                <Text fontWeight={"600"}>3 Students</Text>
                 <Text fontSize={"sm"} color={"gray.500"}>
-                  Room 1 02/05/23
+                  Date & Time
                 </Text>
               </Stack>
             </Stack>
@@ -52,6 +51,7 @@ export default function JoinCard() {
               _hover={{
                 transform: "translateY(-2px)",
                 boxShadow: "lg",
+                bg: "green.500",
               }}
             >
               Join Group
