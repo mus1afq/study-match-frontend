@@ -58,13 +58,6 @@ export default function JoinCard({ id, group_name, group_size, group_date }) {
                   justifyContent={"center"}
                   color={"gray.500"}
                 >
-                  Room {id}
-                </Text>
-                <Text
-                  fontSize={"sm"}
-                  justifyContent={"center"}
-                  color={"gray.500"}
-                >
                   {formattedDate}
                 </Text>
               </Stack>

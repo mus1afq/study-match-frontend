@@ -6,6 +6,8 @@ import {
   Heading,
   Text,
   Center,
+  List,
+  ListItem,
   Stack,
   StackDivider,
   Icon,
@@ -13,8 +15,6 @@ import {
 } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import { IoAddSharp, IoBookOutline, IoSearchSharp } from "react-icons/io5";
-import JoinCard from "./JoinCard";
-import CreateCard from "./CreateCard";
 
 const Feature = ({ text, icon, iconBg }) => {
   return (
@@ -104,9 +104,12 @@ export default function Stats() {
             <Heading as="h2" size="xl" mt={6} mb={2}>
               Find a Group
             </Heading>
+            <List margin={"10"}>
+              <ListItem>Join to find out the Location</ListItem>
+            </List>
           </Stack>
         </Center>
       </Container>
-      </>
+    </>
   );
 }
