@@ -37,6 +37,13 @@ export default function CreateCard() {
         <CardBody>
           <Input variant="filled" placeholder="Group Location" />
         </CardBody>
+        <CardBody>
+          <Input
+            type="datetime-local"
+            variant="filled"
+            placeholder="Date and Time"
+          />
+        </CardBody>
         <CardFooter>
           <Button colorScheme="blue">Create a Group</Button>
         </CardFooter>
