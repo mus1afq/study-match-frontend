@@ -15,9 +15,37 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { useRouter } from "next/router";
+
+import axiosInstance from "@/lib/axios";
 
 export default function SignupCard() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (event) => {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const response = await axiosInstance.post("/createuser/", values);
+
+    if (response.status === 201) {
+      router.push("/Login");
+    } else if (response.status === 400) {
+      console.log(response.data);
+    } else {
+      console.log(response);
+    }
+  };
 
   return (
     <Flex
@@ -42,14 +70,18 @@ export default function SignupCard() {
           p={8}
         >
           <Stack spacing={4}>
-            <FormControl id="email" isRequired>
-              <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+            <FormControl id="username" isRequired>
+              <FormLabel>Username</FormLabel>
+              <Input type="text" name="username" onChange={handleChange} />
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                <Input type={showPassword ? "text" : "password"} />
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  onChange={handleChange}
+                />
                 <InputRightElement h={"full"}>
                   <Button
                     variant={"ghost"}
@@ -71,6 +103,7 @@ export default function SignupCard() {
                 _hover={{
                   bg: "green.500",
                 }}
+                onClick={handleSubmit}
               >
                 Sign up
               </Button>
