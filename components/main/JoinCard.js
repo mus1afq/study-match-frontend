@@ -1,19 +1,32 @@
-import { Search2Icon } from "@chakra-ui/icons";
 import {
   Heading,
-  Avatar,
   Box,
   Center,
-  Image,
-  Flex,
   Text,
   Stack,
   Button,
   useColorModeValue,
   Container,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+
+import authFetch from "@/lib/axios/interceptors";
 
 export default function JoinCard({ id, group_name, group_size, group_date }) {
+  const router = useRouter();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const response = await authFetch.post(`/join/group/${id}/`);
+
+    if (response.status === 200) {
+      router.push("/Groups");
+    } else if (response.status === 400) {
+      console.log(response.data);
+    }
+  };
+
   return (
     <Container>
       <Center py={6}>
@@ -54,6 +67,7 @@ export default function JoinCard({ id, group_name, group_size, group_date }) {
                 boxShadow: "lg",
                 bg: "green.500",
               }}
+              onClick={handleSubmit}
             >
               Join Group
             </Button>
