@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text, Link, Button } from "@chakra-ui/react";
 
 export default function Navbar2() {
   return (
@@ -7,6 +7,13 @@ export default function Navbar2() {
         <Text as="abbr" fontSize="25px" color="white">
           StudyMatch
         </Text>
+        <Box>
+          <Link href="/Logout">
+            <Button colorScheme="pink" size="sm" ml={4}>
+              Logout
+            </Button>
+          </Link>
+        </Box>
       </Flex>
     </Box>
   );
