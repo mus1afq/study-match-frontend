@@ -13,7 +13,12 @@ import {
   Container,
 } from "@chakra-ui/react";
 
-export default function Groupcontent() {
+export default function Groupcontent({
+  group_name,
+  group_size,
+  group_location,
+  id,
+}) {
   return (
     <Container>
       <Center py={6}>
@@ -29,13 +34,13 @@ export default function Groupcontent() {
           <Box p={6}>
             <Stack spacing={0} align={"center"} mb={5}>
               <Heading fontSize={"2xl"} fontWeight={500} fontFamily={"body"}>
-                Group Name
+                {group_name}
               </Heading>
             </Stack>
 
             <Stack direction={"row"} justify={"center"} spacing={6}>
               <Stack spacing={0} align={"center"}>
-                <Text fontWeight={"600"}>Location</Text>
+                <Text fontWeight={"600"}>{group_location}</Text>
                 <Text fontSize={"sm"} color={"gray.500"}>
                   Date & Time
                 </Text>
