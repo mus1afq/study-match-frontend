@@ -18,12 +18,15 @@ export default function Footer() {
         maxW={"6xl"}
         py={4}
         direction={{ base: "column", md: "row" }}
-        spacing={4}
+        spacing={3}
         justify={{ base: "center", md: "space-between" }}
         align={{ base: "center", md: "center" }}
       >
         <Stack direction={"row"} spacing={6}>
           <Link href={"/"}>Home</Link>
+        </Stack>
+        <Stack direction={"row"} spacing={6}>
+          <Link href={"/Main"}>Main</Link>
         </Stack>
         <Text>© 2023 StudyMatch. All rights reserved</Text>
       </Container>
