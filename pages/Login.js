@@ -1,10 +1,10 @@
+// Importing necessary Chakra UI components, icons and React hooks.
 import {
   Flex,
   Box,
   FormControl,
   FormLabel,
   Input,
-  Checkbox,
   Stack,
   Link,
   Button,
@@ -14,32 +14,38 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { setCookie } from "cookies-next";
+import { setCookie } from "cookies-next"; // Importing function to create a cookie
 
-import axiosInstance from "@/lib/axios";
+import axiosInstance from "@/lib/axios"; // Importing axios instance for making HTTP requests
 
+// Defining a functional component called Logincard
 export default function LoginCard() {
-  const router = useRouter();
-  const [values, setValues] = useState();
+  // Setting up router for navigation when user logs in
+  const router = useRouter(); // Setting up Next.js router for navigation when user logs in
+  const [values, setValues] = useState(); // Setting up stateful object to store input values
 
+  // This function is called whenever there is a change in any of
   const handleChange = (event) => {
     setValues({
       ...values,
       [event.target.name]: event.target.value,
     });
   };
-
+  // Function to handle form submission (when user logs in)
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Prevents page from reloading when form is submitted
 
-    const response = await axiosInstance.post("/api/token/", values);
+    const response = await axiosInstance.post("/api/token/", values); // Sends a request to the backend server with user's details using axiosInstance
 
+    // If the response status is 200 (success), then set access_token and refresh_token cookies and redirect the user to the Main page
     if (response.status === 200) {
       setCookie("access_token", response.data.access);
       setCookie("refresh_token", response.data.refresh);
       router.push("/Main");
+      // If the response status is 401 (Unauthorized), then log response data to the console
     } else if (response.status === 401) {
       console.log(response.data);
+      // Otherwise, log the entire response object to the console
     } else {
       console.log(response);
     }
@@ -67,6 +73,8 @@ export default function LoginCard() {
         >
           <Stack spacing={4}>
             <FormControl id="username">
+              {/*   // The "onChange" attribute specifies that handleChange function must
+              be called whenever there is a change in the value of this field. */}
               <FormLabel>Username</FormLabel>
               <Input type="text" name="username" onChange={handleChange} />
             </FormControl>
@@ -79,18 +87,14 @@ export default function LoginCard() {
                 direction={{ base: "column", sm: "row" }}
                 align={"start"}
                 justify={"space-between"}
-              >
-                <Checkbox>Remember me</Checkbox>
-                <Link href="/ForgotPassword" color={"blue.400"}>
-                  Forgot password?
-                </Link>
-              </Stack>
+              ></Stack>
               <Button
                 bg={"cyan.400"}
                 color={"white"}
                 _hover={{
                   bg: "green.500",
                 }}
+                // This sets the "handleSubmit" function as the event handler for the "onClick" event of a button or another clickable element.
                 onClick={handleSubmit}
               >
                 Sign in

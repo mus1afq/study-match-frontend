@@ -1,3 +1,4 @@
+// Importing necessary Chakra UI components, icons and React hooks.
 import {
   Flex,
   Box,
@@ -13,20 +14,26 @@ import {
   useColorModeValue,
   Link,
 } from "@chakra-ui/react";
+// Import the useState hook from the React library.
 import { useState } from "react";
+// Import the ViewIcon and ViewOffIcon components from Chakra UI icons.
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+// Import the useRouter hook from Next.js to get access to the router.
 import { useRouter } from "next/router";
+import axiosInstance from "@/lib/axios"; // Importing axios instance for making HTTP requests
 
-import axiosInstance from "@/lib/axios";
-
+// Export a functional component called SignupCard.
 export default function SignupCard() {
+  // Import the router hook from Next.js.
   const router = useRouter();
+  // Declare two state variables using the useState hook - showPassword (a boolean) and values (an object with email & password fields).
   const [showPassword, setShowPassword] = useState(false);
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
 
+  // Declare a handleChange method that updates the values field based on user input.
   const handleChange = (event) => {
     setValues({
       ...values,
@@ -34,6 +41,7 @@ export default function SignupCard() {
     });
   };
 
+  // Declare a handleSubmit method that submits the form data to the server. If successful, it redirects the user to the login page, else logs error messages to console.
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await axiosInstance.post("/createuser/", values);
@@ -47,6 +55,7 @@ export default function SignupCard() {
     }
   };
 
+  // A functional component that returns the UI for the Sign Up page.
   return (
     <Flex
       minH={"100vh"}
@@ -54,6 +63,7 @@ export default function SignupCard() {
       justify={"center"}
       bg={useColorModeValue("green.50", "pink.80")}
     >
+      {/* The contents of the Sign Up form */}
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} textAlign={"center"}>
@@ -71,6 +81,8 @@ export default function SignupCard() {
         >
           <Stack spacing={4}>
             <FormControl id="username" isRequired>
+              {/*   // The "onChange" attribute specifies that handleChange function must
+            be called whenever there is a change in the value of this field. */}
               <FormLabel>Username</FormLabel>
               <Input type="text" name="username" onChange={handleChange} />
             </FormControl>
@@ -82,6 +94,7 @@ export default function SignupCard() {
                   name="password"
                   onChange={handleChange}
                 />
+                {/* Toggle to show/hide password */}
                 <InputRightElement h={"full"}>
                   <Button
                     variant={"ghost"}
@@ -103,12 +116,14 @@ export default function SignupCard() {
                 _hover={{
                   bg: "green.500",
                 }}
+                // This sets the "handleSubmit" function as the event handler for the "onClick" event of a button or another clickable element.
                 onClick={handleSubmit}
               >
                 Sign up
               </Button>
             </Stack>
             <Stack pt={6}>
+              {/* Link to Login if user has an account  */}
               <Text align={"center"}>
                 Already a user?{" "}
                 <Link href="/Login" color={"blue.400"}>

@@ -1,3 +1,4 @@
+// Importing necessary Chakra UI components, icons and React hooks.
 import {
   Container,
   SimpleGrid,
@@ -16,8 +17,10 @@ import {
 import { Search2Icon } from "@chakra-ui/icons";
 import { IoAddSharp, IoBookOutline, IoSearchSharp } from "react-icons/io5";
 
+// Creating a React component named 'Feature' which takes three parameter variables.
 const Feature = ({ text, icon, iconBg }) => {
   return (
+    // Creating a Stack component with direction 'row' and align property set to 'center'.
     <Stack direction={"row"} align={"center"}>
       <Flex
         w={8}
@@ -33,10 +36,11 @@ const Feature = ({ text, icon, iconBg }) => {
     </Stack>
   );
 };
-
+// Define the Stats function that will be exported
 export default function Stats() {
   return (
     <>
+      {/* Creating a SimpleGrid with two columns on medium screen size and spacing of 10 units. */}
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
         <Stack spacing={4}>
           <Text
@@ -57,6 +61,8 @@ export default function Stats() {
             study with. Whether you are preparing for an exam or just need some
             motivation, weve got you covered!
           </Text>
+
+          {/* Creating a Stack containing multiple Feature components. */}
           <Stack
             spacing={4}
             divider={
@@ -65,6 +71,7 @@ export default function Stats() {
               />
             }
           >
+            {/* Adding features */}
             <Feature
               icon={
                 <Icon as={IoSearchSharp} color={"yellow.500"} w={5} h={5} />
@@ -86,6 +93,8 @@ export default function Stats() {
             />
           </Stack>
         </Stack>
+
+        {/* Creating a Flex element with an Image child element */}
         <Flex>
           <Image
             rounded={"md"}
@@ -97,6 +106,8 @@ export default function Stats() {
           />
         </Flex>
       </SimpleGrid>
+
+      {/* Creating another Stack element containing a Center element with a Stack child element of a Search2Icon, Heading, and List */}
       <Container marginTop={"150"} marginBottom={"30"}>
         <Center>
           <Stack direction={"row"} align={"center"}>
