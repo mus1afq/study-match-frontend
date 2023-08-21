@@ -27,6 +27,11 @@ export default function Navbar() {
               Login
             </Button>
           </Link>
+          <Link href="/pricing">
+            <Button colorScheme="pink" size="sm" ml={4}>
+              Pricing
+            </Button>
+          </Link>
         </Box>
       </Flex>
     </Box>
