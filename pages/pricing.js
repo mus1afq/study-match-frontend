@@ -1,5 +1,6 @@
 import React from "react";
-
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import {
   Box,
   Center,
@@ -10,6 +11,7 @@ import {
 import Monthly from "@/components/pricing/monthly";
 import Annually from "@/components/pricing/annualy";
 import Sixmonths from "@/components/pricing/six-months";
+const stripePromise = loadStripe('your_stripe_public_key_here');
 
 const Pricing = () => {
   return (
@@ -37,9 +39,12 @@ const Pricing = () => {
             margin={{ base: "6em", lg: "4em" }}
             spacing={20}
           >
+            
+            <Elements stripe={stripePromise}>
             <Monthly />
             <Sixmonths />
             <Annually />
+            </Elements>
           </Stack>
         </Center>
       </Box>

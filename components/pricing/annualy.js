@@ -12,8 +12,36 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
-
+import { loadStripe } from '@stripe/stripe-js';
+import { STRIPE_PUBLIC_KEY, SUCCESS_URL, CANCEL_URL} from "./stripeConfig";
+const stripePromise = loadStripe(STRIPE_PUBLIC_KEY);
 export default function Annually() {
+  
+  const handleStripeCheckout = async () => {
+    const stripe = await stripePromise;
+
+  try {
+    // Create a Stripe Checkout session
+    const session = await stripe.redirectToCheckout({
+      lineItems: [
+        {
+          price: "price_1NiL43BfCHaICza7oHVLAwbS",
+          quantity: 1,
+        },
+      ],
+      mode: "subscription", // You can change this based on your use case
+      successUrl: SUCCESS_URL, // Replace with your success URL
+      cancelUrl: CANCEL_URL, // Replace with your cancel URL
+    });
+
+    // If there's an error, you can handle it here
+    if (session.error) {
+      console.error(session.error.message);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
   return (
     <Center py={6}>
       <Box
@@ -82,6 +110,7 @@ export default function Annually() {
             _focus={{
               bg: "green.500",
             }}
+            onClick={handleStripeCheckout} // This handles the Stripe checkout
           >
             Next
           </Button>
