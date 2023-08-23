@@ -11,7 +11,8 @@ import {
 import Monthly from "@/components/pricing/monthly";
 import Annually from "@/components/pricing/annualy";
 import Sixmonths from "@/components/pricing/six-months";
-const stripePromise = loadStripe('your_stripe_public_key_here');
+import {STRIPE_PUBLIC_KEY} from "@/components/pricing/stripeConfig";
+const stripePromise = loadStripe(STRIPE_PUBLIC_KEY);
 
 const Pricing = () => {
   return (
